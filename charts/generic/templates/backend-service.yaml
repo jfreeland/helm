@@ -11,7 +11,7 @@ spec:
   selector:
     app: backend
   ports:
-    {{ - toYaml .Values.backend.service.ports | nindent 6 }}
+    {{- toYaml .Values.backend.service.ports | nindent 6 }}
   type: {{ .Values.backend.service.type }}
 {{- else }}
 {{- end }}

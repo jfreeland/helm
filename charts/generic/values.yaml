@@ -1,48 +1,76 @@
 backend:
   enabled: false
-  replicaCount: 1
+  replicaCount: 2
   autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
   image:
     repository: nginx
     tag: latest
-  ports: []
+  ports:
+    - containerPort: 8080
   env: []
   resources:
     requests:
       cpu: 100m
       memory: 100Mi
-  livenessProbe: {}
-  readinessProbe: {}
+  livenessProbe:
+    httpGet:
+      path: /api/health
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  readinessProbe:
+    httpGet:
+      path: /api/health
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
   service:
     type: ClusterIP
-    ports: []
+    ports:
+      - protocol: TCP
+        port: 8080
+        targetPort: 8080
 
 frontend:
   enabled: false
-  replicaCount: 1
+  replicaCount: 2
   autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 70
   image:
     repository: nginx
     tag: latest
-  ports: []
+  ports:
+    - containerPort: 3000
   env: []
   resources:
     requests:
       cpu: 100m
       memory: 100Mi
-  livenessProbe: {}
-  readinessProbe: {}
+  livenessProbe:
+    httpGet:
+      path: /
+      port: 3000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    httpGet:
+      path: /
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 5
   service:
     type: ClusterIP
-    ports: []
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 3000
 
 ingress:
   enabled: false

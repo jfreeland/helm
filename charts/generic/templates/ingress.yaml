@@ -13,7 +13,7 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          {{- range .Values.ingress.paths }}
+          {{- range $.Values.ingress.paths }}
           - path: {{ .path }}
             pathType: {{ .pathType }}
             backend:

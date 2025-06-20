@@ -21,14 +21,14 @@ spec:
         - name: backend
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
           ports:
-            {{ - toYaml .Values.backend.ports | nindent 12 }}
+            {{- toYaml .Values.backend.ports | nindent 12 }}
           env:
-            {{ - toYaml .Values.backend.env | nindent 12 }}
+            {{- toYaml .Values.backend.env | nindent 12 }}
           resources:
-            {{ - toYaml .Values.backend.resources | nindent 12 }}
+            {{- toYaml .Values.backend.resources | nindent 12 }}
           livenessProbe:
-            {{ - toYaml .Values.backend.livenessProbe | nindent 12 }}
+            {{- toYaml .Values.backend.livenessProbe | nindent 12 }}
           readinessProbe:
-            {{ - toYaml .Values.backend.readinessProbe | nindent 12 }}
+            {{- toYaml .Values.backend.readinessProbe | nindent 12 }}
 {{- else }}
 {{- end }}
