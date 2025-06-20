@@ -1,0 +1,17 @@
+{{- if .Values.frontend.enabled -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-frontend
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    {{ - toYaml .Values.frontend.service.ports | nindent 6 }}
+  type: {{ .Values.frontend.service.type }}
+{{- else }}
+{{- end }}

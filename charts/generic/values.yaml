@@ -1,0 +1,65 @@
+backend:
+  enabled: false
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+  image:
+    repository: nginx
+    tag: latest
+  ports: []
+  env: []
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+  livenessProbe: {}
+  readinessProbe: {}
+  service:
+    type: ClusterIP
+    ports: []
+
+frontend:
+  enabled: false
+  replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+  image:
+    repository: nginx
+    tag: latest
+  ports: []
+  env: []
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+  livenessProbe: {}
+  readinessProbe: {}
+  service:
+    type: ClusterIP
+    ports: []
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts: []
+  paths: []
+#serviceAccount:
+#  create: true
+#  annotations: {}
+#  name: ""
+#
+#imagePullSecrets: []
+#nameOverride: ""
+#fullnameOverride: ""
+#podAnnotations: {}
+#podSecurityContext: {}
+#securityContext: {}
+#nodeSelector: {}
+#tolerations: []
+#affinity: {}

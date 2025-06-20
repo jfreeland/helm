@@ -1,0 +1,5 @@
+apiVersion: v2
+name: generic
+description: A generic Helm chart with a frontend, backend, ingress, and pgdb
+version: 0.1.0
+appVersion: "1.0"
