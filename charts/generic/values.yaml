@@ -77,6 +77,10 @@ ingress:
   annotations: {}
   hosts: []
   paths: []
+
+imagePullSecrets:
+  - name: dockerhub
+
 #serviceAccount:
 #  create: true
 #  annotations: {}
