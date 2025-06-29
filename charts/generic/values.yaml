@@ -110,4 +110,11 @@ nodeSelector: {}
 
 tolerations: []
 
+# If you just want to try to make sure pods are not assigned to the same nodes,
+# you can use this generic podAntiAffinity that will try to schedule on nodes
+# that do not have any pods for this host already.  This is just preferred, not
+# required, so during scale up events, additional pods will get scheduled.
+#
+# If you set this to true, you cannot set any other affinities, at the moment.
+podAntiAffinityKubernetesHost: false
 affinity: {}
