@@ -31,7 +31,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ include "generic.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -72,7 +72,7 @@ spec:
                 - key: app.kubernetes.io/name
                   operator: In
                   values:
-                  - {{ .Chart.Name }}
+                  - {{ include "generic.fullname" . }}
               topologyKey: "kubernetes.io/hostname"
       {{- else }}
         {{- toYaml . | nindent 8 }}
